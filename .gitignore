@@ -1,0 +1,16 @@
+.git
+.ftpconfig
+package-lock.json
+composer.lock
+
+.sass-cache/
+node_modules
+node_modules/
+compilation_cache
+compilation_cache/
+
+dynamic.yml
+
+ssl/certs/*
+!ssl/certs/.gitkeep
+

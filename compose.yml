@@ -1,0 +1,26 @@
+networks:
+  vhost-net:
+    name: vhost-net
+
+services:
+
+  vhost:
+    image: traefik:latest
+    container_name: vhost
+    restart: unless-stopped
+    ports:
+      - 80:80
+      - 8080:8080
+      - 443:443
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./ssl/traefik.yml:/etc/traefik/traefik.yml:ro
+      - ./ssl/dynamic.yml:/etc/traefik/dynamic.yml:ro
+      - ./ssl/certs/:/etc/certs/
+    networks:
+      - vhost-net
+    labels:
+      - "traefik.http.routers.vhost.rule=Host(`localhost`)"
+      - "traefik.http.routers.vhost.service=api@internal"
+      - "traefik.enable=true"
+      - "traefik.http.routers.vhost.tls=true"
