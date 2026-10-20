@@ -12,5 +12,5 @@ compilation_cache/
 dynamic.yml
 
 ssl/certs/*
-!ssl/certs/.gitkeep
+!ssl/certs/localhost
 
